@@ -1,9 +1,0 @@
-c:\users\gelcen\documents\visual studio 2015\Projects\TablePlugin\TablePlugin\bin\Debug\TablePlugin.exe.config
-c:\users\gelcen\documents\visual studio 2015\Projects\TablePlugin\TablePlugin\bin\Debug\TablePlugin.exe
-c:\users\gelcen\documents\visual studio 2015\Projects\TablePlugin\TablePlugin\bin\Debug\TablePlugin.pdb
-c:\users\gelcen\documents\visual studio 2015\Projects\TablePlugin\TablePlugin\obj\Debug\TablePlugin.csprojResolveAssemblyReference.cache
-c:\users\gelcen\documents\visual studio 2015\Projects\TablePlugin\TablePlugin\obj\Debug\TablePlugin.Properties.Resources.resources
-c:\users\gelcen\documents\visual studio 2015\Projects\TablePlugin\TablePlugin\obj\Debug\TablePlugin.csproj.GenerateResource.Cache
-c:\users\gelcen\documents\visual studio 2015\Projects\TablePlugin\TablePlugin\obj\Debug\TablePlugin.exe
-c:\users\gelcen\documents\visual studio 2015\Projects\TablePlugin\TablePlugin\obj\Debug\TablePlugin.pdb
-C:\Users\Gelcen\documents\visual studio 2015\Projects\TablePlugin\TablePlugin\obj\Debug\TablePlugin.MainForm.resources
