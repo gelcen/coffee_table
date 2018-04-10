@@ -75,7 +75,6 @@
             this.chkBoxRoundedEdgesTabletop.TabIndex = 8;
             this.chkBoxRoundedEdgesTabletop.Text = "Закруглить края столешницы";
             this.chkBoxRoundedEdgesTabletop.UseVisualStyleBackColor = true;
-            this.chkBoxRoundedEdgesTabletop.CheckedChanged += new System.EventHandler(this.chkBoxRoundedEdgesTabletop_CheckedChanged);
             // 
             // label4
             // 
@@ -92,7 +91,6 @@
             this.legLengthTextBox.Name = "legLengthTextBox";
             this.legLengthTextBox.Size = new System.Drawing.Size(96, 26);
             this.legLengthTextBox.TabIndex = 6;
-            this.legLengthTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.legLengthTextBox_Validating);
             // 
             // label3
             // 
@@ -109,7 +107,6 @@
             this.legHeightTextBox.Name = "legHeightTextBox";
             this.legHeightTextBox.Size = new System.Drawing.Size(96, 26);
             this.legHeightTextBox.TabIndex = 4;
-            this.legHeightTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.legHeightTextBox_Validating);
             // 
             // label2
             // 
@@ -126,7 +123,6 @@
             this.tableTopThicknessTextBox.Name = "tableTopThicknessTextBox";
             this.tableTopThicknessTextBox.Size = new System.Drawing.Size(96, 26);
             this.tableTopThicknessTextBox.TabIndex = 2;
-            this.tableTopThicknessTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.tableTopThicknessTextBox_Validating);
             // 
             // label1
             // 
@@ -143,7 +139,6 @@
             this.txtBoxTabletopLength.Name = "txtBoxTabletopLength";
             this.txtBoxTabletopLength.Size = new System.Drawing.Size(96, 26);
             this.txtBoxTabletopLength.TabIndex = 0;
-            this.txtBoxTabletopLength.Validating += new System.ComponentModel.CancelEventHandler(this.txtBoxTabletopLength_Validating);
             // 
             // buttonBuildTable
             // 

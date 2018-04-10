@@ -42,7 +42,7 @@ namespace TablePlugin
             {
                 return _tabletopLength;
             }
-            set
+            private set
             {
                 if (value < 50 || value > 90)
                 {
@@ -61,7 +61,7 @@ namespace TablePlugin
             {
                 return _tabletopThickness;
             }
-            set
+            private set
             {
                 if (value < 3 || value > 10)
                 {
@@ -80,7 +80,7 @@ namespace TablePlugin
             {
                 return _legHeight;
             }
-            set
+            private set
             {
                 if (value < 15 || value > 45)
                 {
@@ -103,7 +103,7 @@ namespace TablePlugin
             {
                 return _legLength;
             }
-            set
+            private set
             {
                 if (value < 3 || value > 6)
                 {
@@ -122,40 +122,27 @@ namespace TablePlugin
             {
                 return _roundedEdgesTabletop;
             }
-            set
+            private set
             {
                 _roundedEdgesTabletop = value;
             }
         }
 
-        public TableSettings()
+        /// <summary>
+        /// Конструктор класса TableSettings
+        /// </summary>
+        /// <param name="tabletopLength"></param>
+        /// <param name="tabletopThickness"></param>
+        /// <param name="legHeight"></param>
+        /// <param name="legLength"></param>
+        /// <param name="roundedEdges"></param>
+        public TableSettings(int tabletopLength, int tabletopThickness, int legHeight, int legLength, bool roundedEdges)
         {
-            RoundedEdgesTabletop = false;
-        }
-        public TableSettings(int value, int number)
-        {
-            switch (number)
-            {
-                case 1:
-                    TabletopLength = value;
-                    break;
-                case 2:
-                    TabletopThickness = value;
-                    break;
-                case 3:
-                    LegHeight = value;
-                    break;
-                case 4:
-                    LegLength = value;
-                    break;
-                case 5:
-                    if (value == 1)
-                        RoundedEdgesTabletop = true;
-                    else RoundedEdgesTabletop = false;
-                    break;
-                default:
-                    throw new ArgumentException("Number должна быть в пределе от 1 до 5!");                   
-            }
+            TabletopLength = tabletopLength;
+            TabletopThickness = tabletopThickness;
+            LegHeight = legHeight;
+            LegLength = legLength;
+            RoundedEdgesTabletop = roundedEdges;
         }
 
     }

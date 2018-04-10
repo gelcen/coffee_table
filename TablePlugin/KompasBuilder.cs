@@ -8,6 +8,9 @@ namespace TablePlugin
 {
     class KompasBuilder
     {
-        
+        public KompasBuilder(TableSettings tableSettings)
+        {
+
+        }
     }
 }

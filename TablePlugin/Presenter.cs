@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace TablePlugin
 {
+    /// <summary>
+    /// Класс Презентер
+    /// </summary>
     class Presenter
     {
 
@@ -22,8 +25,7 @@ namespace TablePlugin
 
         private void Build(object sender, EventArgs e)
         {
-            TableSettings TableSettings = _view.TableSettings;
-
+            _kompasBuilder = new KompasBuilder(_view.TableSettings);
         }
     }
 }
