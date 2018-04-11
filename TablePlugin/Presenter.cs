@@ -20,7 +20,6 @@ namespace TablePlugin
         {
             _view = view;
             _view.BuildClick += new EventHandler(Build);
-            _kompasBuilder = new KompasBuilder();
         }
 
         private void Build(object sender, EventArgs e)

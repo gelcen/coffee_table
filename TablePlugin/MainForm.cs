@@ -81,6 +81,11 @@ namespace TablePlugin
             return true;
         }
 
+        /// <summary>
+        /// Валидация отдельного поля
+        /// </summary>
+        /// <param name="textBox"></param>
+        /// <param name="errorMessage"></param>
         private void ValidateTextBox(TextBox textBox, string errorMessage)
         {
             if (string.IsNullOrEmpty(textBox.Text) || int.Parse(textBox.Text) <= 0)
@@ -89,6 +94,9 @@ namespace TablePlugin
             }    
         }
 
+        /// <summary>
+        /// Показ ошибок
+        /// </summary>
         private void ShowErrors()
         {
             if (_errorList.Count != 0)
@@ -104,6 +112,7 @@ namespace TablePlugin
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         /// <summary>
         /// Свойство для передачи класса столика в Presenter
         /// </summary>
@@ -124,5 +133,14 @@ namespace TablePlugin
         /// </summary>
         public event EventHandler BuildClick;
 
+        /// <summary>
+        /// Обработчик для ввода в поля только чисел
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void HandleKeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
     }
 }

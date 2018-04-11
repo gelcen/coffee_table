@@ -139,6 +139,7 @@
             this.txtBoxTabletopLength.Name = "txtBoxTabletopLength";
             this.txtBoxTabletopLength.Size = new System.Drawing.Size(96, 26);
             this.txtBoxTabletopLength.TabIndex = 0;
+            this.txtBoxTabletopLength.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.HandleKeyPress);
             // 
             // buttonBuildTable
             // 
