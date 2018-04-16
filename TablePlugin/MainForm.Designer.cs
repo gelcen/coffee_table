@@ -61,7 +61,7 @@
             this.groupBox1.Controls.Add(this.txtBoxTabletopLength);
             this.groupBox1.Location = new System.Drawing.Point(17, 28);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(479, 333);
+            this.groupBox1.Size = new System.Drawing.Size(461, 333);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Параметры столика";
@@ -147,7 +147,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonBuildTable.Location = new System.Drawing.Point(127, 378);
             this.buttonBuildTable.Name = "buttonBuildTable";
-            this.buttonBuildTable.Size = new System.Drawing.Size(233, 55);
+            this.buttonBuildTable.Size = new System.Drawing.Size(215, 55);
             this.buttonBuildTable.TabIndex = 1;
             this.buttonBuildTable.Text = "Построить столик";
             this.buttonBuildTable.UseVisualStyleBackColor = true;
@@ -160,7 +160,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(508, 455);
+            this.ClientSize = new System.Drawing.Size(490, 455);
             this.Controls.Add(this.buttonBuildTable);
             this.Controls.Add(this.groupBox1);
             this.Name = "MainForm";

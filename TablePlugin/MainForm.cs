@@ -22,6 +22,9 @@ namespace TablePlugin
         /// </summary>
         private List<string> _errorList;
 
+        /// <summary>
+        /// Конструктор MainForm
+        /// </summary>
         public MainForm()
         {
             InitializeComponent();
