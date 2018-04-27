@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace TablePlugin
 {
@@ -11,22 +8,32 @@ namespace TablePlugin
         /// <summary>
         /// Длина стороны столешницы
         /// </summary>
-        private int _tabletopLength;
+        private Parameter _tabletopLength;
 
         /// <summary>
         /// Толщина столешницы
         /// </summary>
-        private int _tabletopThickness;
+        private Parameter _tabletopThickness;
 
         /// <summary>
         /// Высота ножки 
         /// </summary>
-        private int _legHeight;
+        private Parameter _legHeight;
 
         /// <summary>
         /// Длина стороны ножки 
         /// </summary>
-        private int _legLength;
+        private Parameter _legLength;
+
+        /// <summary>
+        /// Высота разделителей
+        /// </summary>
+        private Parameter _septumLength;
+
+        /// <summary>
+        /// Отступ разделителей от столешницы
+        /// </summary>
+        private Parameter _septumOffset;
 
         /// <summary>
         /// Скруглённые края столешницы
@@ -34,82 +41,101 @@ namespace TablePlugin
         private bool _roundedEdgesTabletop;
 
         /// <summary>
+        /// Строить ли разделители? 
+        /// </summary>
+        private bool _withSeptums;
+
+        /// <summary>
         /// Свойство для длины стороны столешницы
         /// </summary>
-        public int TabletopLength
+        public uint TabletopLength
         {
             get
             {
-                return _tabletopLength;
+                return _tabletopLength.Value;
             }
             private set
             {
-                if (value < 50 || value > 90)
-                {
-                    throw new ArgumentException("Длина стороны квадратной столешницы должна от 50 cм до 90 cм!");
-                }
-                _tabletopLength = value;
+                _tabletopLength.Value = value;
             }
         }
 
         /// <summary>
         /// Свойство для толщины столешницы
         /// </summary>
-        public int TabletopThickness
+        public uint TabletopThickness
         {
             get
             {
-                return _tabletopThickness;
+                return _tabletopThickness.Value;
             }
             private set
             {
-                if (value < 3 || value > 10)
-                {
-                    throw new ArgumentException("Толщина столешницы должна быть от 3 см до 10 см!");
-                }
-                _tabletopThickness = value;
+                _tabletopThickness.Value = value;
             }
         }
 
         /// <summary>
         /// Свойство для высоты ножки
         /// </summary>
-        public int LegHeight
+        public uint LegHeight
         {
             get
             {
-                return _legHeight;
+                return _legHeight.Value;
             }
             private set
             {
-                if (value < 15 || value > 45)
-                {
-                    throw new ArgumentException("Высота ножки должна быть от 15 см до 45 см!");
-                }
-                if(_tabletopLength > 70 && value < 30)
+                if(_tabletopLength.Value > 700 && value < 300)
                 {
                     throw new ArgumentException("Высота ножки не может быть ниже 30 см, если длина стороны столешницы выше 70 см!");
                 }
-                _legHeight = value;
+                _legHeight.Value = value;
             }
         }
 
         /// <summary>
         /// Свойство для длины стороны ножки
         /// </summary>
-        public int LegLength
+        public uint LegLength
         {
             get
             {
-                return _legLength;
+                return _legLength.Value;
             }
             private set
             {
-                if (value < 3 || value > 6)
-                {
-                    throw new ArgumentException("Длина стороны ножки должна быть от 3 см до 6 см!");
-                }
-                _legLength = value;
+                _legLength.Value = value;
+            }
+        }
+
+        /// <summary>
+        /// Свойство для длины разделителей
+        /// </summary>
+        public uint SeptumLength
+        {
+            get
+            {
+                return _septumLength.Value;
+            }
+            private set
+            {
+                _septumLength.Value = value;
+            }
+        }
+
+        /// <summary>
+        /// Свойство для отступа между разделителем и столешницей
+        /// </summary>
+        public uint SeptumOffset
+        {
+            get
+            {
+                return _septumOffset.Value;
+            }
+            set
+            {
+                _septumOffset.Value = value;
             }
         }
 
@@ -129,6 +155,21 @@ namespace TablePlugin
         }
 
         /// <summary>
+        /// Свойство для определения строить ли разделители
+        /// </summary>
+        public bool WithSeptums
+        {
+            get
+            {
+                return _withSeptums;
+            }
+            private set
+            {
+                _withSeptums = value;
+            }
+        }
+
+        /// <summary>
         /// Конструктор класса TableSettings
         /// </summary>
         /// <param name="tabletopLength"></param>
@@ -136,12 +177,22 @@ namespace TablePlugin
         /// <param name="legHeight"></param>
         /// <param name="legLength"></param>
         /// <param name="roundedEdges"></param>
-        public TableSettings(int tabletopLength, int tabletopThickness, int legHeight, int legLength, bool roundedEdges)
+        public TableSettings(uint tabletopLength, uint tabletopThickness, 
+                             uint legHeight, uint legLength,
+                             bool withSeptums, uint septumLength, uint septumOffset, 
+                             bool roundedEdges)
         {
-            TabletopLength = tabletopLength;
-            TabletopThickness = tabletopThickness;
+            _tabletopLength = new Parameter(500, 900, tabletopLength, "Длина стороны столешницы");
+            _tabletopThickness = new Parameter(30, 100, tabletopThickness, "Толщина столешницы");
+            _legHeight = new Parameter(150, 450, 200, "Высота ножек");
             LegHeight = legHeight;
-            LegLength = legLength;
+            _legLength = new Parameter(30, 60, legLength, "Длина стороны основания ножки");
+            _withSeptums = withSeptums;
+            if (_withSeptums == true )
+            {
+                _septumLength = new Parameter(20, 50, septumLength, "Высота разделителей");
+                _septumOffset = new Parameter(50, 100, septumOffset, "Отступ разделителей от столешницы");
+            }
             RoundedEdgesTabletop = roundedEdges;
         }
 

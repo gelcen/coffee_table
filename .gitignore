@@ -1,6 +1,6 @@
 TablePlugin/bin
 TablePlugin/obj
-TablePlugin/.vs
+TablePlugin/.vs/TablePlugin
 tests/bin
 tests/obj 
 TablePlugin/packages

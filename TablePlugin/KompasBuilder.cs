@@ -1,18 +1,13 @@
 ﻿using Kompas6API5;
 using Kompas6Constants3D;
-using Kompas6Constants;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TablePlugin
 {
     /// <summary>
     /// Класс для построения столика в КОМПАС 3D
     /// </summary>
-    class KompasBuilder
+    public class KompasBuilder
     {
         /// <summary>
         /// Указатель для работы с Компасом
@@ -29,6 +24,11 @@ namespace TablePlugin
         /// Половина длины стороны столешницы
         /// </summary>
         private double _halfY;
+
+        /// <summary>
+        /// Ссылка на вспомогательную плоскость для ножек
+        /// </summary>
+        private ksEntity _legsOffsetPlane;
 
 
         /// <summary>
@@ -64,6 +64,11 @@ namespace TablePlugin
 
             BuildTabletop(tableSettings);
             BuildLegs(tableSettings);
+
+            if (tableSettings.WithSeptums)
+            {
+                BuildSeptums(tableSettings);
+            }
 
             if (tableSettings.RoundedEdgesTabletop)
             {
@@ -147,6 +152,8 @@ namespace TablePlugin
                 legsOffsetPlaneDef.offset = tableSettings.TabletopThickness;
                 legsOffsetPlane.Create();
 
+                _legsOffsetPlane = legsOffsetPlane;
+
                 var legsSketch = (ksEntity)part.NewEntity((short)Obj3dType.o3d_sketch);
                 if (legsSketch != null)
                 {
@@ -188,6 +195,70 @@ namespace TablePlugin
         }
 
         /// <summary>
+        /// Построение разделителей
+        /// </summary>
+        /// <param name="tableSettings">Параметры столика</param>
+        private void BuildSeptums(TableSettings tableSettings)
+        {
+            var document = (ksDocument3D)_kompas.ActiveDocument3D();
+            var part = (ksPart)document.GetPart((short)Part_Type.pTop_Part);
+            if (part != null)
+            {
+                var septumOffsetPlane = (ksEntity)part.NewEntity(
+                    (short)Obj3dType.o3d_planeOffset);
+                var septOffsetPlaneDef = (ksPlaneOffsetDefinition)
+                    septumOffsetPlane.GetDefinition();
+                septOffsetPlaneDef.SetPlane(_legsOffsetPlane);
+                septOffsetPlaneDef.offset = tableSettings.SeptumOffset;
+                septumOffsetPlane.Create();
+
+                var septumSketch = (ksEntity)part.NewEntity((short)Obj3dType.o3d_sketch);
+                if (septumSketch != null)
+                {
+                    septumSketch.name = "Эскиз разделителей";
+                    var septumSketchDef = (ksSketchDefinition)septumSketch.GetDefinition();
+                    septumSketchDef.SetPlane(septumOffsetPlane);
+                    septumSketch.Create();
+
+                    double a = 20;
+                    double b = (_halfX - tableSettings.LegLength) - (-_halfX + tableSettings.LegLength);
+
+                    var sketchEdit = septumSketchDef.BeginEdit();
+                    DrawSeptum(sketchEdit, -_halfX + tableSettings.LegLength, _halfY-10,
+                        a, b, 0);
+                    DrawSeptum(sketchEdit, _halfX - 10, 
+                        _halfY - tableSettings.LegLength,
+                        b, a, 1);
+                    DrawSeptum(sketchEdit, -_halfX + tableSettings.LegLength,
+                        -_halfY + 10, 
+                        a, b, 2);
+                    DrawSeptum(sketchEdit, -_halfX+10, _halfY - tableSettings.LegLength, b, a, 0);
+                    septumSketchDef.EndEdit();
+
+                    var extr = (ksEntity)part.NewEntity(
+                                        (short)Obj3dType.o3d_bossExtrusion);
+                    if (extr != null)
+                    {
+                        extr.name = "Выдавливание разделителей";
+                        var extrDef = (ksBossExtrusionDefinition)extr.GetDefinition();
+                        if (extrDef != null)
+                        {
+                            extrDef.directionType = (short)Direction_Type.dtNormal;
+                            extrDef.SetSideParam(true, (short)End_Type.etBlind,
+                                                 tableSettings.SeptumLength);
+                            extrDef.SetSketch(septumSketch);
+                            extr.Create();
+                        }
+                    }
+
+
+
+                }
+
+            }
+        }
+
+        /// <summary>
         /// Функция для рисования эскиза ножек столика
         /// </summary>
         /// <param name="sketchEdit">Объект рисования эскиза</param>
@@ -206,6 +277,38 @@ namespace TablePlugin
         }
 
         /// <summary>
+        /// Функция для рисовки разделителей
+        /// </summary>
+        /// <param name="sketchEdit">Объект рисования эскиза</param>
+        /// <param name="x">Координата х </param>
+        /// <param name="y">Координата у </param>
+        /// <param name="a">Сторона прямоугольника 1</param>
+        /// <param name="b">Сторона прямоугольника 2</param>
+        private void DrawSeptum(ksDocument2D sketchEdit, double x, double y, double a, double b, int type)
+        {
+            if (type == 0)
+            {
+                sketchEdit.ksLineSeg(x, y, x + b, y, 1);
+                sketchEdit.ksLineSeg(x + b, y, x + b, y - a, 1);
+                sketchEdit.ksLineSeg(x + b, y - a, x, y - a, 1);
+                sketchEdit.ksLineSeg(x, y - a, x, y, 1);
+            }
+            if (type == 1)
+            {
+                sketchEdit.ksLineSeg(x, y, x, y - a, 1);
+                sketchEdit.ksLineSeg(x, y - a, x - b, y - a, 1);
+                sketchEdit.ksLineSeg(x - b, y - a, x - b, y, 1);
+                sketchEdit.ksLineSeg(x - b, y, x, y, 1);
+            }
+            if (type == 2)
+            {
+                sketchEdit.ksLineSeg(x, y, x, y + a, 1);
+                sketchEdit.ksLineSeg(x, y + a, x + b, y + a, 1);
+                sketchEdit.ksLineSeg(x + b, y + a, x + b, y, 1);
+                sketchEdit.ksLineSeg(x + b, y, x, y, 1);
+            }
+        }
+        /// <summary>
         /// Скругление краев столешницы
         /// </summary>
         /// <param name="tableSettings">Параметры столешницы</param>
@@ -221,7 +324,7 @@ namespace TablePlugin
                 var filletDef = (ksFilletDefinition)fillet.GetDefinition();
                 if (filletDef != null)
                 {
-                    filletDef.radius = 1;
+                    filletDef.radius = 5;
                     filletDef.tangent = false;
 
                     var edgeArrayY = (ksEntityCollection)part.EntityCollection(

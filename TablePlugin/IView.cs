@@ -6,9 +6,19 @@ using System.Threading.Tasks;
 
 namespace TablePlugin
 {
-    interface IView
+    /// <summary>
+    /// Интерфейс для передачи TableSettings и BuildClick event 
+    /// </summary>
+    public interface IView
     {
-        TableSettings TableSettings { get; set; }
+        /// <summary>
+        /// Свойство TableSettings
+        /// </summary>
+        TableSettings TableSettings { get; }
+
+        /// <summary>
+        /// Событие нажатия на кнопку "Построить столик"
+        /// </summary>
         event EventHandler BuildClick;
     }
 }

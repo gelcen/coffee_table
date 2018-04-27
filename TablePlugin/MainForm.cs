@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TablePlugin
 {
+    /// <summary>
+    /// Класс MainForm
+    /// </summary>
     public partial class MainForm : Form, IView
     {
         /// <summary>
@@ -44,15 +41,30 @@ namespace TablePlugin
                 return;
             }
 
-            int tabletopLength = Convert.ToInt32(txtBoxTabletopLength.Text);
-            int tabletopThickness = Convert.ToInt32(tableTopThicknessTextBox.Text);
-            int legHeight = Convert.ToInt32(legHeightTextBox.Text);
-            int legLength = Convert.ToInt32(legLengthTextBox.Text);
+            uint tabletopLength = Convert.ToUInt32(txtBoxTabletopLength.Text);
+            uint tabletopThickness = Convert.ToUInt32(tableTopThicknessTextBox.Text);
+            uint legHeight = Convert.ToUInt32(legHeightTextBox.Text);
+            uint legLength = Convert.ToUInt32(legLengthTextBox.Text);
+            uint septumLength = 0;
+            uint septumOffset = 0;
+            bool withSeptums = chkBoxBuildSeptums.Checked;
+            if (withSeptums)
+            {
+                septumLength = Convert.ToUInt32(txtBoxSeptumLength.Text);
+                septumOffset = Convert.ToUInt32(txtBoxSeptumOffset.Text);
+            }
+            else
+            {
+                septumLength = 0;
+                septumOffset = 0;
+            }
             bool roundedEdges = chkBoxRoundedEdgesTabletop.Checked;
 
             try
             {
-                _tableSettings = new TableSettings(tabletopLength, tabletopThickness, legHeight, legLength, roundedEdges);
+                _tableSettings = new TableSettings(tabletopLength, tabletopThickness, 
+                    legHeight, legLength, 
+                    withSeptums, septumLength, septumOffset, roundedEdges);
             }
             catch (ArgumentException ex)
             {
@@ -60,7 +72,10 @@ namespace TablePlugin
                 ShowErrors();
                 return;
             }
-            if (BuildClick != null) BuildClick(this, EventArgs.Empty);           
+            if (BuildClick != null)
+            {
+                BuildClick(this, EventArgs.Empty);
+            }          
         }
 
         /// <summary>
@@ -71,10 +86,15 @@ namespace TablePlugin
         {
             _errorList.Clear();
 
-            ValidateTextBox(txtBoxTabletopLength, "Введите, пожалуйста, длину стороны столешницы!");
-            ValidateTextBox(tableTopThicknessTextBox, "Введите, пожалуйста, толщину столешницы!");
-            ValidateTextBox(legHeightTextBox, "Введите, пожалуйста, высоту ножки!");
-            ValidateTextBox(legLengthTextBox, "Введите, пожалуйста, длину стороны ножки!");
+            ValidateTextBox(txtBoxTabletopLength.Text, "Введите, пожалуйста, длину стороны столешницы!");
+            ValidateTextBox(tableTopThicknessTextBox.Text, "Введите, пожалуйста, толщину столешницы!");
+            ValidateTextBox(legHeightTextBox.Text, "Введите, пожалуйста, высоту ножки!");
+            ValidateTextBox(legLengthTextBox.Text, "Введите, пожалуйста, длину стороны ножки!");
+            if (chkBoxBuildSeptums.Checked == true)
+            {
+                ValidateTextBox(txtBoxSeptumLength.Text, "Введите, пожалуйста, высоту разделителей!");
+                ValidateTextBox(txtBoxSeptumOffset.Text, "Введите, пожалуйста, отступ разделителей от столешницы!");
+            }
 
             if (_errorList.Count != 0)
             {
@@ -87,11 +107,11 @@ namespace TablePlugin
         /// <summary>
         /// Валидация отдельного поля
         /// </summary>
-        /// <param name="textBox"></param>
-        /// <param name="errorMessage"></param>
-        private void ValidateTextBox(TextBox textBox, string errorMessage)
+        /// <param name="txtBoxText">Текст поля на проверку</param>
+        /// <param name="errorMessage">Сообщение ошибки для поля</param>
+        private void ValidateTextBox(string txtBoxText, string errorMessage)
         {
-            if (string.IsNullOrEmpty(textBox.Text) || int.Parse(textBox.Text) <= 0)
+            if (string.IsNullOrEmpty(txtBoxText) || int.Parse(txtBoxText) <= 0)
             {
                 _errorList.Add(errorMessage);
             }    
@@ -124,11 +144,7 @@ namespace TablePlugin
             get
             {
                 return _tableSettings;
-            }
-            set
-            {
-                _tableSettings = value;
-            }            
+            }           
         }
 
         /// <summary>
@@ -144,6 +160,31 @@ namespace TablePlugin
         private void HandleKeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        /// <summary>
+        /// Загрузка окна
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            txtBoxSeptumLength.Enabled = false;
+            txtBoxSeptumOffset.Enabled = false;
+        }
+
+        private void chkBoxBuildSeptums_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkBoxBuildSeptums.Checked == true)
+            {
+                txtBoxSeptumLength.Enabled = true;
+                txtBoxSeptumOffset.Enabled = true;
+            }
+            else
+            {
+                txtBoxSeptumLength.Enabled = false;
+                txtBoxSeptumOffset.Enabled = false;
+            }
         }
     }
 }
