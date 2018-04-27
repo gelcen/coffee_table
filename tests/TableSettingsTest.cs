@@ -25,7 +25,7 @@ namespace tests
         [Test]
         [TestCase(1000, 50, 300, 50, true, 30, 60, TestName = "TableSettings negative test(TabletopLength).")]
         [TestCase(300, 50, 300, 50, true, 30, 60, TestName = "TableSettings negative test(TabletoLength).")]
-        [TestCase(600.0, 50, 300, 50, true, 30, 60, TestName = "TableSettings negative test(TabletopLength).")]
+        [TestCase(600.1, 50, 300, 50, true, 30, 60, TestName = "TableSettings negative test(TabletopLength).")]
         [TestCase(0, 50, 300, 50, true, 30, 60, TestName = "TableSettings negative test(TabletopLength).")]
         [TestCase(-1, 50, 300, 50, true, 30, 60, TestName = "TableSettings negative test(TabletopLength).")]
         [TestCase(uint.MaxValue, 50, 300, 50, true, 30, 60, TestName = "TableSettings negative test(TabletopLength).")]
