@@ -82,7 +82,7 @@
             // 
             // txtBoxSeptumOffset
             // 
-            this.txtBoxSeptumOffset.Location = new System.Drawing.Point(341, 102);
+            this.txtBoxSeptumOffset.Location = new System.Drawing.Point(344, 102);
             this.txtBoxSeptumOffset.Name = "txtBoxSeptumOffset";
             this.txtBoxSeptumOffset.Size = new System.Drawing.Size(96, 26);
             this.txtBoxSeptumOffset.TabIndex = 12;
@@ -99,7 +99,7 @@
             // 
             // txtBoxSeptumLength
             // 
-            this.txtBoxSeptumLength.Location = new System.Drawing.Point(341, 70);
+            this.txtBoxSeptumLength.Location = new System.Drawing.Point(344, 70);
             this.txtBoxSeptumLength.Name = "txtBoxSeptumLength";
             this.txtBoxSeptumLength.Size = new System.Drawing.Size(96, 26);
             this.txtBoxSeptumLength.TabIndex = 10;

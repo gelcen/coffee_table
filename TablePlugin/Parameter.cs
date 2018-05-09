@@ -153,6 +153,10 @@ namespace TablePlugin
                 {
                     throw new ArgumentException("Значение поля Name не может быть пустой строкой!");
                 }
+                if (!(value is string))
+                {
+                    throw new ArgumentException("Значение поля Name должно быть строкой!");
+                }
                 _name = value;
             }
         }
