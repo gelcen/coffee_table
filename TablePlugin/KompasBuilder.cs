@@ -1,6 +1,7 @@
 ﻿using Kompas6API5;
 using Kompas6Constants3D;
 using System;
+using System.Runtime.InteropServices;
 
 namespace TablePlugin
 {
@@ -39,6 +40,16 @@ namespace TablePlugin
         {
             if (_kompas == null)
             {
+                //try
+                //{
+                //    string progID = "Kompas.Application.5";
+                //    _kompas = (KompasObject)Marshal.GetActiveObject(progID);
+                //}
+                //catch
+                //{
+                //    Type t = Type.GetTypeFromProgID("Kompas.Application.5");
+                //    _kompas = (KompasObject)Activator.CreateInstance(t);
+                //}
                 Type t = Type.GetTypeFromProgID("Kompas.Application.5");
                 _kompas = (KompasObject)Activator.CreateInstance(t);
             }
@@ -250,11 +261,7 @@ namespace TablePlugin
                             extr.Create();
                         }
                     }
-
-
-
                 }
-
             }
         }
 

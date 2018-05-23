@@ -23,7 +23,8 @@ namespace tests
                                                   int legHeight, int legLength,
                                                   bool withSeptums, int septumLength, int septumOffset)
         {
-            var tableSettings = new TableSettings(Convert.ToUInt32(tabletopLength), Convert.ToUInt32(tabletopThickness),
+            var tableSettings = new TableSettings(Convert.ToUInt32(tabletopLength), 
+                                                  Convert.ToUInt32(tabletopThickness),
                                                   Convert.ToUInt32(legHeight), Convert.ToUInt32(legLength),
                          withSeptums, Convert.ToUInt32(septumLength), Convert.ToUInt32(septumOffset), true);
         }
@@ -95,7 +96,8 @@ namespace tests
         {
             Assert.That(() =>
             {
-                 var tableSettings = new TableSettings(Convert.ToUInt32(tabletopLength), Convert.ToUInt32(tabletopThickness),
+                 var tableSettings = new TableSettings(Convert.ToUInt32(tabletopLength), 
+                     Convert.ToUInt32(tabletopThickness),
                      Convert.ToUInt32(legHeight), Convert.ToUInt32(legLength), 
                      withSeptums, Convert.ToUInt32(septumLength), Convert.ToUInt32(septumOffset), true);
             },
@@ -103,9 +105,11 @@ namespace tests
         }
 
         [Test]
-        [TestCase(uint.MinValue, uint.MinValue, uint.MinValue, uint.MinValue, true, uint.MinValue, uint.MinValue,
+        [TestCase(uint.MinValue, uint.MinValue, uint.MinValue, uint.MinValue, 
+            true, uint.MinValue, uint.MinValue,
             TestName = "TableSettings negative test. All parameters are uint.MinValue.")]
-        [TestCase(uint.MaxValue, uint.MaxValue, uint.MaxValue, uint.MaxValue, true, uint.MaxValue, uint.MaxValue,
+        [TestCase(uint.MaxValue, uint.MaxValue, uint.MaxValue, uint.MaxValue, 
+            true, uint.MaxValue, uint.MaxValue,
             TestName = "TableSettings negative test. All parameters are uint.MaxValue.")]
         public void ConstructNegativeTest(uint tabletopLength, uint tabletopThickness,
                                                   uint legHeight, uint legLength,
@@ -131,7 +135,8 @@ namespace tests
         {
             Assert.That(() =>
             {
-                var tableSettings = new TableSettings(tabletopLength, Convert.ToUInt32(tabletopThickness),
+                var tableSettings = new TableSettings(tabletopLength, 
+                    Convert.ToUInt32(tabletopThickness),
                     Convert.ToUInt32(legHeight), Convert.ToUInt32(legLength),
                     withSeptums, Convert.ToUInt32(septumLength), Convert.ToUInt32(septumOffset), true);
             },
@@ -149,7 +154,8 @@ namespace tests
         {
             Assert.That(() =>
             {
-                var tableSettings = new TableSettings(Convert.ToUInt32(tabletopLength), tabletopThickness,
+                var tableSettings = new TableSettings(Convert.ToUInt32(tabletopLength), 
+                    tabletopThickness,
                     Convert.ToUInt32(legHeight), Convert.ToUInt32(legLength),
                     withSeptums, Convert.ToUInt32(septumLength), Convert.ToUInt32(septumOffset), true);
             },
@@ -167,7 +173,8 @@ namespace tests
         {
             Assert.That(() =>
             {
-                var tableSettings = new TableSettings(Convert.ToUInt32(tabletopLength), Convert.ToUInt32(tabletopThickness),
+                var tableSettings = new TableSettings(Convert.ToUInt32(tabletopLength), 
+                    Convert.ToUInt32(tabletopThickness),
                     legHeight, Convert.ToUInt32(legLength),
                     withSeptums, Convert.ToUInt32(septumLength), Convert.ToUInt32(septumOffset), true);
             },
@@ -185,7 +192,8 @@ namespace tests
         {
             Assert.That(() =>
             {
-                var tableSettings = new TableSettings(Convert.ToUInt32(tabletopLength), Convert.ToUInt32(tabletopThickness),
+                var tableSettings = new TableSettings(Convert.ToUInt32(tabletopLength), 
+                    Convert.ToUInt32(tabletopThickness),
                     Convert.ToUInt32(legHeight), legLength,
                     withSeptums, Convert.ToUInt32(septumLength), Convert.ToUInt32(septumOffset), true);
             },
@@ -203,7 +211,8 @@ namespace tests
         {
             Assert.That(() =>
             {
-                var tableSettings = new TableSettings(Convert.ToUInt32(tabletopLength), Convert.ToUInt32(tabletopThickness),
+                var tableSettings = new TableSettings(Convert.ToUInt32(tabletopLength), 
+                    Convert.ToUInt32(tabletopThickness),
                     Convert.ToUInt32(legHeight), Convert.ToUInt32(legLength),
                     withSeptums, septumLength, Convert.ToUInt32(septumOffset), true);
             },
@@ -221,7 +230,8 @@ namespace tests
         {
             Assert.That(() =>
             {
-                var tableSettings = new TableSettings(Convert.ToUInt32(tabletopLength), Convert.ToUInt32(tabletopThickness),
+                var tableSettings = new TableSettings(Convert.ToUInt32(tabletopLength), 
+                    Convert.ToUInt32(tabletopThickness),
                     Convert.ToUInt32(legHeight), Convert.ToUInt32(legLength),
                     withSeptums, Convert.ToUInt32(septumLength), septumOffset, true);
             },

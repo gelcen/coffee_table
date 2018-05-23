@@ -30,12 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.chkBoxBuildSeptums = new System.Windows.Forms.CheckBox();
-            this.txtBoxSeptumOffset = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtBoxSeptumLength = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.chkBoxRoundedEdgesTabletop = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.legLengthTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -44,6 +38,12 @@
             this.tableTopThicknessTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtBoxTabletopLength = new System.Windows.Forms.TextBox();
+            this.chkBoxBuildSeptums = new System.Windows.Forms.CheckBox();
+            this.txtBoxSeptumOffset = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtBoxSeptumLength = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.chkBoxRoundedEdgesTabletop = new System.Windows.Forms.CheckBox();
             this.buttonBuildTable = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -68,61 +68,6 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Габариты столика";
-            // 
-            // chkBoxBuildSeptums
-            // 
-            this.chkBoxBuildSeptums.AutoSize = true;
-            this.chkBoxBuildSeptums.Location = new System.Drawing.Point(6, 38);
-            this.chkBoxBuildSeptums.Name = "chkBoxBuildSeptums";
-            this.chkBoxBuildSeptums.Size = new System.Drawing.Size(224, 24);
-            this.chkBoxBuildSeptums.TabIndex = 13;
-            this.chkBoxBuildSeptums.Text = "Построить разделители ";
-            this.chkBoxBuildSeptums.UseVisualStyleBackColor = true;
-            this.chkBoxBuildSeptums.CheckedChanged += new System.EventHandler(this.chkBoxBuildSeptums_CheckedChanged);
-            // 
-            // txtBoxSeptumOffset
-            // 
-            this.txtBoxSeptumOffset.Location = new System.Drawing.Point(344, 102);
-            this.txtBoxSeptumOffset.Name = "txtBoxSeptumOffset";
-            this.txtBoxSeptumOffset.Size = new System.Drawing.Size(96, 26);
-            this.txtBoxSeptumOffset.TabIndex = 12;
-            this.txtBoxSeptumOffset.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.HandleKeyPress);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 108);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(279, 20);
-            this.label6.TabIndex = 11;
-            this.label6.Text = "Отступ разделителей, мм (50..100) ";
-            // 
-            // txtBoxSeptumLength
-            // 
-            this.txtBoxSeptumLength.Location = new System.Drawing.Point(344, 70);
-            this.txtBoxSeptumLength.Name = "txtBoxSeptumLength";
-            this.txtBoxSeptumLength.Size = new System.Drawing.Size(96, 26);
-            this.txtBoxSeptumLength.TabIndex = 10;
-            this.txtBoxSeptumLength.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.HandleKeyPress);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 76);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(310, 20);
-            this.label5.TabIndex = 9;
-            this.label5.Text = "Высота разделителя ножек, мм (20..50)";
-            // 
-            // chkBoxRoundedEdgesTabletop
-            // 
-            this.chkBoxRoundedEdgesTabletop.AutoSize = true;
-            this.chkBoxRoundedEdgesTabletop.Location = new System.Drawing.Point(12, 342);
-            this.chkBoxRoundedEdgesTabletop.Name = "chkBoxRoundedEdgesTabletop";
-            this.chkBoxRoundedEdgesTabletop.Size = new System.Drawing.Size(258, 24);
-            this.chkBoxRoundedEdgesTabletop.TabIndex = 8;
-            this.chkBoxRoundedEdgesTabletop.Text = "Закруглить края столешницы";
-            this.chkBoxRoundedEdgesTabletop.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
@@ -191,6 +136,61 @@
             this.txtBoxTabletopLength.Size = new System.Drawing.Size(96, 26);
             this.txtBoxTabletopLength.TabIndex = 0;
             this.txtBoxTabletopLength.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.HandleKeyPress);
+            // 
+            // chkBoxBuildSeptums
+            // 
+            this.chkBoxBuildSeptums.AutoSize = true;
+            this.chkBoxBuildSeptums.Location = new System.Drawing.Point(6, 38);
+            this.chkBoxBuildSeptums.Name = "chkBoxBuildSeptums";
+            this.chkBoxBuildSeptums.Size = new System.Drawing.Size(224, 24);
+            this.chkBoxBuildSeptums.TabIndex = 13;
+            this.chkBoxBuildSeptums.Text = "Построить разделители ";
+            this.chkBoxBuildSeptums.UseVisualStyleBackColor = true;
+            this.chkBoxBuildSeptums.CheckedChanged += new System.EventHandler(this.chkBoxBuildSeptums_CheckedChanged);
+            // 
+            // txtBoxSeptumOffset
+            // 
+            this.txtBoxSeptumOffset.Location = new System.Drawing.Point(344, 102);
+            this.txtBoxSeptumOffset.Name = "txtBoxSeptumOffset";
+            this.txtBoxSeptumOffset.Size = new System.Drawing.Size(96, 26);
+            this.txtBoxSeptumOffset.TabIndex = 12;
+            this.txtBoxSeptumOffset.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.HandleKeyPress);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 108);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(279, 20);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "Отступ разделителей, мм (50..100) ";
+            // 
+            // txtBoxSeptumLength
+            // 
+            this.txtBoxSeptumLength.Location = new System.Drawing.Point(344, 70);
+            this.txtBoxSeptumLength.Name = "txtBoxSeptumLength";
+            this.txtBoxSeptumLength.Size = new System.Drawing.Size(96, 26);
+            this.txtBoxSeptumLength.TabIndex = 10;
+            this.txtBoxSeptumLength.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.HandleKeyPress);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 76);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(310, 20);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "Высота разделителя ножек, мм (20..50)";
+            // 
+            // chkBoxRoundedEdgesTabletop
+            // 
+            this.chkBoxRoundedEdgesTabletop.AutoSize = true;
+            this.chkBoxRoundedEdgesTabletop.Location = new System.Drawing.Point(18, 342);
+            this.chkBoxRoundedEdgesTabletop.Name = "chkBoxRoundedEdgesTabletop";
+            this.chkBoxRoundedEdgesTabletop.Size = new System.Drawing.Size(258, 24);
+            this.chkBoxRoundedEdgesTabletop.TabIndex = 8;
+            this.chkBoxRoundedEdgesTabletop.Text = "Закруглить края столешницы";
+            this.chkBoxRoundedEdgesTabletop.UseVisualStyleBackColor = true;
             // 
             // buttonBuildTable
             // 

@@ -163,19 +163,12 @@ namespace TablePlugin
         }
 
         /// <summary>
-        /// Загрузка окна
+        /// Функция для установки состояния полей
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void MainForm_Load(object sender, EventArgs e)
+        /// <param name="state">Состояние для установки</param>
+        void SetTextBoxState(bool state)
         {
-            txtBoxSeptumLength.Enabled = false;
-            txtBoxSeptumOffset.Enabled = false;
-        }
-
-        private void chkBoxBuildSeptums_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chkBoxBuildSeptums.Checked == true)
+            if (state)
             {
                 txtBoxSeptumLength.Enabled = true;
                 txtBoxSeptumOffset.Enabled = true;
@@ -184,7 +177,27 @@ namespace TablePlugin
             {
                 txtBoxSeptumLength.Enabled = false;
                 txtBoxSeptumOffset.Enabled = false;
-            }
+            }            
+        }
+
+        /// <summary>
+        /// Загрузка окна
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            SetTextBoxState(false);
+        }
+
+        /// <summary>
+        /// Обработчик события изменения состояния чекбокса
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void chkBoxBuildSeptums_CheckedChanged(object sender, EventArgs e)
+        {
+            SetTextBoxState(chkBoxBuildSeptums.Checked);
         }
     }
 }
